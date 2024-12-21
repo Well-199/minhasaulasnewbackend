@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using minhasaulasnewbackend.Models;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Env.Load();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("ConnectionPostgres");

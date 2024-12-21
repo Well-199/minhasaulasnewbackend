@@ -67,8 +67,8 @@ artifacts/
 ScaffoldingReadMe.txt
 
 
-Models/MinhasaulasContext.cs
-appsettings.Development.json
+./.env*
+.env*
 
 # StyleCop
 StyleCopReport.xml

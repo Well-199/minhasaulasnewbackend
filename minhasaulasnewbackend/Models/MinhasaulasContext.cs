@@ -22,7 +22,7 @@ public partial class MinhasaulasContext : DbContext
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("");//
+        => optionsBuilder.UseNpgsql("");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

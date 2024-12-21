@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using minhasaulasnewbackend.Models;
+using System.Text.Json;
 
 namespace minhasaulasnewbackend.Controllers
 {
@@ -16,17 +17,24 @@ namespace minhasaulasnewbackend.Controllers
                 var user = _context.Usuarios.Find(userid);
                 if (user == null) 
                 {
-                    return Ok(new { data = false, message = "Id inválido" });
+                    // NotFound indica que o recurso não foi encontrado status 404
+                    return NotFound(new { data = false, message = "Id inválido" });
                 }
             }
             catch (Exception error) 
             { 
+                // BadRequest indica algo de errado na solicitação status 400
                 return BadRequest(error.Message);
             }
 
             try
             {
                 var aulas = _context.Aulas.Where(a => a.UserId == userid);
+
+                // Imprimir uma nova instancia de um objeto no Console
+                string json = JsonSerializer.Serialize(aulas);
+                Console.WriteLine(json);
+
                 return Ok(aulas);
 
             } catch (Exception error)

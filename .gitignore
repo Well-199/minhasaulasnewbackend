@@ -66,6 +66,10 @@ artifacts/
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+
+Models/MinhasaulasContext.cs
+appsettings.Development.json
+
 # StyleCop
 StyleCopReport.xml
 

@@ -1,0 +1,6 @@
+@minhasaulasnewbackend_HostAddress = http://localhost:5103
+
+GET {{minhasaulasnewbackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

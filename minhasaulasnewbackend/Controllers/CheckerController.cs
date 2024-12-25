@@ -20,9 +20,9 @@ namespace minhasaulasnewbackend.Controllers
                 }
                 return Ok(new { data=true, server="server running successfully" });
             }
-            catch (Exception ex) 
+            catch (Exception error) 
             {
-                BadRequest(ex.Message);
+                BadRequest(error.Message);
             }
             
             return Ok(true);

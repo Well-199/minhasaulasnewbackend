@@ -24,9 +24,6 @@ namespace minhasaulasnewbackend.Controllers
                     return NotFound(new { data=false, error="e-mail/ou senha inválidos" });
                 }
 
-                string json = JsonSerializer.Serialize(user);
-                Console.WriteLine(json);
-
                 var hash = user.Senha;
                 var password = usuario.Senha.ToString();
 
@@ -51,6 +48,7 @@ namespace minhasaulasnewbackend.Controllers
                 // Derivar a chave a partir da senha e do salt fixo
                 var derivedKey = await Task.Run(() =>
                 {
+                    // Esse método pode ser usado para gerar o hash no cadastro
                     using var pbkdf2 = new Rfc2898DeriveBytes(password, Encoding.UTF8.GetBytes(saltKey), 1000, HashAlgorithmName.SHA512);
                     return BitConverter.ToString(pbkdf2.GetBytes(64)).Replace("-", "").ToLower(); // Retorna chave em hexadecimal
                 });
@@ -64,6 +62,9 @@ namespace minhasaulasnewbackend.Controllers
                         rng.GetBytes(randomBytes);
                     }
                     string token = BitConverter.ToString(randomBytes).Replace("-", "").ToLower(CultureInfo.CurrentCulture);
+
+                    user.Token = token; // Atualizar o token
+                    await _context.SaveChangesAsync();
 
                     return Ok(new { data = true, userid = user.Id, token });
                 }

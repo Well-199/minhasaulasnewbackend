@@ -9,11 +9,11 @@ namespace minhasaulasnewbackend.Controllers
         private readonly MinhasaulasContext _context = context;
 
         [HttpGet("checker")]
-        public IActionResult Checker()
+        public async Task<IActionResult> Checker()
         {
             try
             {
-                var user = _context.Usuarios.Find(5);
+                var user = await _context.Usuarios.FindAsync(5);
                 if (user == null) 
                 {
                     return NotFound(new { data=false, server="server is not working" });

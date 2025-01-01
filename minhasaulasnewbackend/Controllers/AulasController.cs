@@ -10,11 +10,11 @@ namespace minhasaulasnewbackend.Controllers
         private readonly MinhasaulasContext _context = context;
 
         [HttpGet("all/class/{userid}")]
-        public IActionResult GetAulasById([FromRoute] int userid)
+        public async Task<IActionResult> GetAulasById([FromRoute] int userid)
         {
             try
             {
-                var user = _context.Usuarios.Find(userid);
+                var user = await _context.Usuarios.FindAsync(userid);
                 if (user == null) 
                 {
                     // NotFound indica que o recurso não foi encontrado status 404

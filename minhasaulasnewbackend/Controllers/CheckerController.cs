@@ -8,6 +8,9 @@ namespace minhasaulasnewbackend.Controllers
     {
         private readonly MinhasaulasContext _context = context;
 
+        /// <summary>
+        /// Verifica se o servidor esta rodando e a conexão com o banco de dados
+        /// </summary>
         [HttpGet("checker")]
         public async Task<IActionResult> Checker()
         {

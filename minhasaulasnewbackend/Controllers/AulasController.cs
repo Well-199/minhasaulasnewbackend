@@ -3,12 +3,23 @@ using minhasaulasnewbackend.Models;
 using System.Text.Json;
 
 namespace minhasaulasnewbackend.Controllers
-{
+{   
     [ApiController]
     public class AulasController(MinhasaulasContext context) : Controller
     {
         private readonly MinhasaulasContext _context = context;
 
+        /// <summary>
+        /// Lista de aulas.
+        /// </summary>
+        /// <remarks>
+        /// Lista todas as aulas de um professor pelo id
+        /// </remarks>
+        /// <param name="userid">ID do registro do professor no banco de dados</param>
+        /// <returns></returns>
+        /// <response code="200">Lista retornada com sucesso mesmo que vazia</response>
+        /// <response code="400">Retorna erros de validação</response>
+        /// <response code="500">Retorna erros no servidor</response>
         [HttpGet("all/class/{userid}")]
         public async Task<IActionResult> GetAulasById([FromRoute] int userid)
         {
